@@ -1,0 +1,26 @@
+
+	<header>
+   	<h2>Login</h2>
+      <span class="byline">Ingresar email y password</span> 
+	</header>
+
+
+<% if flash[:notice] %>
+	<div>
+		<em><%= flash[:notice] %></em>
+	</div>
+<% end %>
+
+<%= form_tag enter_path do %>
+	<div>
+		<%= label_tag :email, "Email" %>
+		<%= email_field_tag :email %>
+	</div>
+	<div>
+		<%= label_tag :password, "Password" %>
+		<%= password_field_tag :password %>
+	</div>
+	<div>
+		<%= submit_tag "Login" %>
+	</div>
+<% end %>

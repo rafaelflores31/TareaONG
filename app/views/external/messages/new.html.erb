@@ -1,0 +1,33 @@
+<h1>Mensaje</h1>
+
+<%= render partial: "shared/errors", locals: { object: @message } %>
+
+<%= form_for [:external,@message] do |f| %>
+	<div>
+		<%= f.label :title, "Titulo" %>  
+		<%= f.text_field :title %>
+	</div>
+    <br>
+    <br>
+	<div>
+		<%= f.label :description, "Description" %>
+		<%= f.text_field :description %>
+	</div>
+	<br>
+    <br>
+	<div>
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+	</div>
+	<br>
+    <br>
+	<div>
+		<%= f.label :nursery_id, "Guarderias" %>
+		<%= f.collection_select(:nursery_id, Nursery.find(:all), :id, :name) %>
+	</div>
+	<br>
+    <br>
+	<div>
+		<%= f.submit "Mandar Mensaje" %>
+	</div>
+<% end %>

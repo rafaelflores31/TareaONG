@@ -1,0 +1,9 @@
+<h1>Editar Guarderia</h1>
+
+<%= render partial: "shared/errors", locals: { object: @nursery } %>
+
+<%= render "form" %>
+
+<ul>
+	<li><%= link_to "Cancelar", nurseries_index_path %></li>
+</ul>

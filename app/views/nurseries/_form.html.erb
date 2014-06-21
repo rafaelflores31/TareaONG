@@ -1,0 +1,30 @@
+
+<%= form_for @nursery ,url:{action: "create"} do |f| %>
+	<div>
+		<%= f.label :name, "Nombre" %>
+		<%= f.text_field :name, id: "nur_name" %>
+	</div>
+
+    <br>
+    <br>
+    <br>
+	<div>
+		<%= f.label :country, "Pais" %>
+		<%= f.select :country, options_for_select([["Honduras", "Honduras"], ["Costa Rica", "Costa Rica"],["El Salvador", "El alvador"],["Guatemala", "Guatemala"],["Colombia", "Colombia"],["Venezuela", "Venezuela"],["Bolivia", "Bolivia"],["Peru", "Peru"],["Brazil", "Brazil"],["Nicaragua", "Nicaragua"],["Panama", "Panama"]]) %>
+	</div>
+	<br>
+	<br>
+	<div>
+		<%= f.label :address %>
+		<%= f.text_field :address %>
+	</div>
+	<br>
+	<br>
+	<br>
+    
+    <br>
+    <br>
+	<div>
+		<%= f.submit "Ingresar Guarderia" %>
+	</div>
+<% end %>

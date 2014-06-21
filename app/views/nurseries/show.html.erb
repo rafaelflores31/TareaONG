@@ -1,0 +1,33 @@
+<h1>ID:  <%= @nursery.id %> </h1>
+<p><strong>Guarderia: </strong>  <%= @nursery.name %>  </p>
+<p><strong>Pais: </strong>  <%= @nursery.country %>  </p>
+<p><strong>Direccion: </strong>  <%= @nursery.address %>  </p>
+<p><strong>Propositos: </strong> </p>
+
+
+<div class="bordered">
+<table class="js_nursery_purposes">
+	<%= render @nursery.purposes %>
+</table>
+</div>
+
+<br>
+<br>
+<%= form_for @nursery.purposes.build, remote: true do |f| %>
+	<%= f.text_field :description, placeholder: "Ingresar un proposito" %>
+	<%= f.hidden_field :nursery_id %>
+	<%= f.submit %>
+<% end %>
+
+
+
+<p>
+	<ul>
+		<li><%= link_to "Editar Guarderia", edit_nurseries_path(@nursery) %></li>
+
+		<li><%= link_to "Mis Mensajes", my_messages_nurseries_path(@nursery) %></li>
+  
+		<br>
+		<li><%= link_to "Regresar", nurseries_index_path %></li>
+	</ul>
+</p>

@@ -1,0 +1,36 @@
+<article class="is-post is-post-excerpt">
+	<header>
+   	<h2>Agregar un nuevo jugador!</h2>
+      <span class="byline">Ingresa los datos de un nuevo mundialista!</span> 
+	</header>
+</article>
+
+<%= render partial: "shared/error_partial", locals: { object: @player } %>
+
+<div>
+<%= form_for([@country, @player]) do |f| %>
+	<div>
+		<%= f.label :number, "Numero de Vista" %>
+		<%= f.number_field :number %>
+	</div>
+	<div>
+		<%= f.label :name, "Nombre" %>
+		<%= f.text_field :name %>
+	</div>
+	<div>
+		<%= f.label :birthday, "Cumpleaños" %>
+		<%= f.datetime_select :birthday %>
+	</div>
+	<div>
+		<%= f.label :team, "Equipo" %>
+		<%= f.text_field :team %>
+	</div>
+	<div>
+		<%= f.label :quantity, "Cantidad" %>
+		<%= f.number_field :quantity %>
+	</div>
+	<div>
+		<%= f.submit %>
+	</div>
+<% end %>
+</div>

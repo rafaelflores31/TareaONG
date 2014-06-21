@@ -1,0 +1,25 @@
+
+<h1>Nurseries</h1>
+
+<% if @nurseries.any? %>
+
+  
+	<% if flash[:notice] %>
+		<div><em><%= flash[:notice] %></em></div>
+	<% end %>
+	<br>
+	
+	<br>
+	<br>
+	
+	<br>
+	<div class="js_nursery_list">
+		<%= render partial: "table", locals: { nurseries: @nurseries } %>
+	</div>
+	  <%= render "searchn" %>
+<% else %>
+	<em><strong>No hay Guarderias Agregados aun!</strong></em>
+<% end %>
+<br>
+
+<%= link_to "Agregar guarderia", new_nurseries_path %>

@@ -1,0 +1,23 @@
+<h1>Mis Mensajes</h1>
+
+<table class="bordered">
+  <thead>
+    <tr>
+      <th>MENSAJE DATOS</th>
+      <th>EMAIL</th>
+      <th>FECHA DE CREACION</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @messages.each do |message| %>
+      <tr>
+        <td><%= message.description %></td>
+        <td><%= message.email %></td>
+        <td><%= message.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

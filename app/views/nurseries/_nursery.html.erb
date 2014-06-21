@@ -1,0 +1,9 @@
+<tr>
+	<td><%= nursery.id %></td>
+	<td><%= link_to nursery.name, nursery, class: "link-nursery", data: {name: nursery.name} %></td>
+	<td><%= nursery.country %></td>
+	<td><%= nursery.address %></td>
+
+	<td><%= link_to "Editar", edit_nurseries_path(nursery) %> </td> </td>
+
+</tr>

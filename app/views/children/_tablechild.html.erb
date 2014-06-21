@@ -1,0 +1,16 @@
+<table class="bordered">
+	<thead>
+	<tr>
+		<th>Nombre</th>
+		<th>Edad</th>
+		<th>Descripcion</th>
+	</tr>
+	</thead>
+	<% nursery.children.each do |child| %>
+		<tr>
+			<td><%= link_to child.name, child %></td>
+			<td><%= child.age %></td>
+			<td><%= child.description %></td>
+		</tr>
+	<% end %>
+</table>

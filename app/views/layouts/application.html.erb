@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TareaONG</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+
+<div class="main">
+  <div class="header">
+    <div class="header_resize">
+      <div class="menu_nav">
+        <ul>
+          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Guarderias", nurseries_index_path %></li>
+          <li><%= link_to "Mensaje", new_external_message_path %></li>
+          <% unless session[:user_id] %>
+          <li ><%= link_to "Login", login_path %> </li>
+          <li ><%= link_to "Sign Up", join_path %></li>
+          <% end %>
+        <% if session[:user_id] %>    
+        <li ><%= link_to "Logout", logout_path, method: :post %></li>
+        <% end %>
+      </div>
+      <div class="logo">
+        <h1><a href="home/index.html">ONG<span></span> <small>Organizacion con guarderias</small></a></h1>
+      </div>
+      <div class="clr"></div>
+
+      <div class="slider">
+
+        <div id="coin-slider"> <a href="#"><%= image_tag("ONGslide.jpg", size: "695x277", alt: "") %></a>
+      
+         
+        </div>
+        <div class="clr"></div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+
+
+  <div class="content">
+    <div class="content_resize">
+      <div class="mainbar">
+        <div class="article">
+  
+         <%= yield %>
+         <br>
+         <br>
+         <br>
+         <br>
+        </div>
+ 
+
+      </div>
+      <div class="sidebar">
+        <div class="gadget">
+          <h2 class="star"><span>Menu </span>Guarderias</h2>
+          <div class="clr"></div>
+          <ul class="sb_menu">
+           <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Guarderias", nurseries_index_path %></li>
+          <li><%= link_to "Mensaje", new_external_message_path %></li>
+          <% unless session[:user_id] %>
+          <li ><%= link_to "Login", login_path %> </li>
+          <li ><%= link_to "Sign Up", join_path %></li>
+          <% end %>
+        <% if session[:user_id] %>    
+        <li ><%= link_to "Logout", logout_path, method: :post %></li>
+        <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  <div class="fbg">
+    <div class="fbg_resize">
+      <div class="col c1">
+        <h2><span>Galeria</span> Imagenes Guarderia</h2>
+         <a href="#"><%= image_tag("ONG.jpg", size: "75x75", alt: "gal") %></a>
+         <a href="#"><%= image_tag("ONG1.jpg", size: "75x75", alt: "gal") %></a>
+         <a href="#"><%= image_tag("ONG2.jpg", size: "75x75", alt: "gal") %></a>
+         <a href="#"><%= image_tag("ONG3.jpg", size: "75x75", alt: "gal") %></a>
+         <a href="#"><%= image_tag("ONG4.jpg", size: "75x75", alt: "gal") %></a>
+         <a href="#"><%= image_tag("ONG5.jpg", size: "75x75", alt: "gal") %></a>
+      </div>
+      <div class="col c2">
+        <h2><span>Descripcion</span> </h2>
+        <p>Esta aplicacion organiza lo que son guarderias y sus recursos. Para mandar un mensaje proceder al link de MENSAJE</p>
+       
+      </div>
+      <div class="clr"></div>
+    </div>
+  </div>
+  
+</div>
+</body>
+
+
+</html>

@@ -1,0 +1,2094 @@
+  [1m[36m (7.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (8.5ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateNurseries (20140526005857)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (4.2ms)[0m  [1mCREATE TABLE "nurseries" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "country" varchar(255), "address" text, "purpose" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140526005857"]]
+  [1m[36m (6.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateKids (20140526005951)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (9.2ms)[0m  [1mCREATE TABLE "kids" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "age" integer, "record" text, "nursery_id" integer, "guardian_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140526005951"]]
+  [1m[36m (5.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateGuardians (20140526010406)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (5.8ms)[0m  [1mCREATE TABLE "guardians" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "age" integer, "email" varchar(255), "phone" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140526010406"]]
+  [1m[36m (4.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateChildren (20140526012112)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (5.3ms)[0m  [1mCREATE TABLE "children" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "age" integer, "nursery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140526012112"]]
+  [1m[36m (4.1ms)[0m  [1mcommit transaction[0m
+Migrating to AddDescriptionToChildren (20140526013714)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (5.7ms)[0m  [1mALTER TABLE "children" ADD "description" text[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140526013714"]]
+  [1m[36m (3.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateMessages (20140526014843)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (5.8ms)[0m  [1mCREATE TABLE "messages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" text, "email" varchar(255), "nursery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140526014843"]]
+  [1m[36m (4.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateUsers (20140602205104)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (5.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255), "full_name" varchar(255), "user" varchar(255), "password_digest" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140602205104"]]
+  [1m[36m (4.1ms)[0m  [1mcommit transaction[0m
+Migrating to AddNurseryIdToUsers (20140602205434)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (5.4ms)[0m  [1mALTER TABLE "users" ADD "nursery_id" integer[0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140602205434"]]
+  [1m[36m (3.7ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.9ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mUser Load (2.2ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mUser Load (1.9ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:21:56 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 2987ms (Views: 2933.2ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:21:59 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 132ms (Views: 52.1ms | ActiveRecord: 2.3ms)
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:22:20 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 398ms (Views: 342.6ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:22:20 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 129ms (Views: 53.2ms | ActiveRecord: 2.5ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mUser Load (2.2ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1
+  [1m[36mUser Load (2.0ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (122.3ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:33:32 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$QbI4jBWwxpz7ujiNH/KyUOBF4AOMxyK0V3Qt6fVED6JaN7QcljDFe"], ["updated_at", Mon, 09 Jun 2014 09:33:32 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:33:32 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 413ms (Views: 356.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (4.4ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.9ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:33:32 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$BkDE9rrK6TKyrdS.YFlaHOBqQKNiwM0DHdjFMOve3HYBCwop7elTC"], ["updated_at", Mon, 09 Jun 2014 09:33:32 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:33:32 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 53ms (Views: 52.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:33:32 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 66ms (Views: 55.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.9ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.9ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:33:33 UTC +00:00], ["email", "unitec3@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$vV5FajyrsruQg.MbVLKZReZrQv.Q111630p9uHgW7y.0LcEwQLVOe"], ["updated_at", Mon, 09 Jun 2014 09:33:33 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:33:33 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 53ms (Views: 52.8ms | ActiveRecord: 0.0ms)
+  [1m[36m (4.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.2ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:33:33 UTC +00:00], ["email", "unitec4@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$yv2sIRCw.7.xm0emxcBrguVLlhope1dWDxfd8hMl20YKh9Jv8fhMu"], ["updated_at", Mon, 09 Jun 2014 09:33:33 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:33:33 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 52ms (Views: 51.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:33:33 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 53ms (Views: 51.9ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.4ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mUser Load (2.4ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (2.3ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (46.7ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:34:39 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$HVrcHx6q5as4npOKY2w7judIZeVFUtO4ULv9mqKySKtT73HNXkseK"], ["updated_at", Mon, 09 Jun 2014 09:34:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:34:39 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (14.2ms)
+Completed 200 OK in 423ms (Views: 364.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (5.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:34:39 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$H1taikm5u8wPPn8KGOWFYuKGEpcRqTLAxhuSVSTOgoGgnhubFJSdS"], ["updated_at", Mon, 09 Jun 2014 09:34:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:34:39 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 59ms (Views: 58.1ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:34:39 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 68ms (Views: 56.3ms | ActiveRecord: 0.2ms)
+  [1m[35m (5.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.7ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:34:39 UTC +00:00], ["email", "unitec3@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$jjDXGmt6nzaCfnSJV3bF0e/fdQr97FTpqltzxuLkJuQuD0oX4zV1S"], ["updated_at", Mon, 09 Jun 2014 09:34:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:34:39 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 53ms (Views: 52.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (4.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (4.7ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:34:39 UTC +00:00], ["email", "unitec4@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$tEqLStY9tCtJzfDoGFXV0eOfo6Vo93MgjfTqgrpgIqN53OXtpWGDO"], ["updated_at", Mon, 09 Jun 2014 09:34:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:34:39 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 55ms (Views: 54.6ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:34:40 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 53ms (Views: 51.5ms | ActiveRecord: 0.1ms)
+  [1m[36m (4.4ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mUser Load (2.2ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (45.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:35:35 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$wQc6vtYFqjQ6GTtOOrPlZugj5ZUaK4pRrMIvR0wQ0mmS/TAakPKXa"], ["updated_at", Mon, 09 Jun 2014 09:35:35 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:35:35 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 414ms (Views: 356.4ms | ActiveRecord: 0.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (4.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.6ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:35:35 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$nXTcf0.VZCOKMol8ZTRnJ.5S3/1mo2i7UFnm92YhHCPLRUvX.8Jye"], ["updated_at", Mon, 09 Jun 2014 09:35:35 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:35:35 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 52ms (Views: 51.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:35:35 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 62ms (Views: 51.1ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.8ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:35:35 UTC +00:00], ["email", "unitec3@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$liHPzJSVeRmgLuIEpT7XO.kXOdxl2fsrLtyqJTtmNdI1fQZJcFCM6"], ["updated_at", Mon, 09 Jun 2014 09:35:35 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:35:35 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 54ms (Views: 53.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (3.9ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (4.6ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:35:35 UTC +00:00], ["email", "unitec4@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$y8Z5VWJ4A78G/6vTrZrsf.fUfx7MeTg3OqYFkB8rDWinYIXBgFlo."], ["updated_at", Mon, 09 Jun 2014 09:35:35 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:35:35 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 54ms (Views: 53.9ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:35:35 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 53ms (Views: 51.7ms | ActiveRecord: 0.1ms)
+  [1m[36m (4.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (44.1ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:36:25 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$6MrAwrXxFLUMZexCBxVVyejVY5zCGFU.moZArCyAnnRxLQavf3kr2"], ["updated_at", Mon, 09 Jun 2014 09:36:25 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:36:25 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 403ms (Views: 346.8ms | ActiveRecord: 0.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (4.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (4.7ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:36:26 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$LEBx2zZ/Nos3zmed9jO8ae4M6VPqhOpgxzW4tBnLrdKdGikJdkx4G"], ["updated_at", Mon, 09 Jun 2014 09:36:26 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:36:26 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 56ms (Views: 55.6ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:36:26 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 67ms (Views: 55.7ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (4.8ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:36:26 UTC +00:00], ["email", "unitec3@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$X1pMuoUIwS3Xs8vudgfKsulTYMW4Q7snHRC3GkrBExEVlBaEvdJzq"], ["updated_at", Mon, 09 Jun 2014 09:36:26 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:36:26 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 52ms (Views: 51.2ms | ActiveRecord: 0.0ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:36:26 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"unitec3@ong.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'unitec3@ong.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 59ms (Views: 55.9ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.1ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:36:26 UTC +00:00], ["email", "unitec4@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$biHca4mNiJgkLsBlAarDxOYI2YIrhvsB1rShdODdWD/vxfRH2lLiO"], ["updated_at", Mon, 09 Jun 2014 09:36:26 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:36:26 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 55ms (Views: 55.1ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:36:26 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 53ms (Views: 52.1ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.3ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (42.4ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:38:44 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$BRzvTYHt67TlOvn.cw8hS.FO21T7RyIbXYAuZGEti2Z14ZHhZvsXG"], ["updated_at", Mon, 09 Jun 2014 09:38:44 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:38:44 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.8ms)
+Completed 200 OK in 415ms (Views: 358.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (5.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.9ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:38:44 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$VxTmOWkgbSiS8S8l7PdqQu8sdd0mVm20/zrozfysATDqX8am3EqgW"], ["updated_at", Mon, 09 Jun 2014 09:38:44 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:38:44 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 54ms (Views: 53.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:38:44 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 66ms (Views: 53.9ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:38:44 UTC +00:00], ["email", "unitec3@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$wYkRx6/GVKrOSfrVyFz3p.0mL5BL9dbYe88RWJtzmIeeNxN7JZ.su"], ["updated_at", Mon, 09 Jun 2014 09:38:44 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:38:44 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 52ms (Views: 51.5ms | ActiveRecord: 0.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:38:44 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"unitec3@ong.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'unitec3@ong.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 55ms (Views: 52.0ms | ActiveRecord: 0.1ms)
+  [1m[35m (4.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.8ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:38:44 UTC +00:00], ["email", "unitec4@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$gBiVGwgR6NHO4951TZGDkuQX2Ay54WNCQua9/wekun5VNsqKuE0MG"], ["updated_at", Mon, 09 Jun 2014 09:38:44 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:38:44 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 53ms (Views: 52.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:38:45 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 56ms (Views: 54.6ms | ActiveRecord: 0.1ms)
+  [1m[35m (4.3ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (44.9ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:39:11 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$iapoICA9MKfj4d1dNikubu.4mT9WJPCnxA4DX78eAW96.7KMFO9hi"], ["updated_at", Mon, 09 Jun 2014 09:39:11 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:39:11 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 417ms (Views: 362.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (5.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.9ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:39:11 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$80qNkcGW50s2s3pfKziukeDBSAknjjxnilj53PvS57oq6o1Y3kizq"], ["updated_at", Mon, 09 Jun 2014 09:39:11 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:39:11 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 58ms (Views: 57.3ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:39:11 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 66ms (Views: 54.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (4.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:39:11 UTC +00:00], ["email", "unitec3@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$anNofy.H1pl.7kLKZJyFU.oNKeBG9kxUcbLKj9blHmaJOhDLy40EC"], ["updated_at", Mon, 09 Jun 2014 09:39:11 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:39:11 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 53ms (Views: 52.5ms | ActiveRecord: 0.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:39:12 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"unitec3@ong.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'unitec3@ong.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 54ms (Views: 50.9ms | ActiveRecord: 0.1ms)
+  [1m[35m (4.5ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.7ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:39:12 UTC +00:00], ["email", "unitec4@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$ipH93U68OjWTwBrJTFauhu5PbgzAL8D4rT.6QjDqI1RPTh/RINr7m"], ["updated_at", Mon, 09 Jun 2014 09:39:12 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:39:12 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 53ms (Views: 53.1ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:39:12 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 53ms (Views: 52.2ms | ActiveRecord: 0.1ms)
+  [1m[35m (4.5ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (42.7ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:40:36 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$tru9ebLIq4geJMWDWXc5p.sNG0vLLjK2dr6/KsV/O1zi5y7Dl6ie."], ["updated_at", Mon, 09 Jun 2014 09:40:36 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:40:36 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.9ms)
+Completed 200 OK in 417ms (Views: 361.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (4.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:40:37 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$LZ8u.QNZWa7W0PwkpY.Vf.CXJ49h4.PVNioqyOBxYGS6zktuZaNze"], ["updated_at", Mon, 09 Jun 2014 09:40:37 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:40:37 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 54ms (Views: 53.3ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:40:37 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 66ms (Views: 54.1ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.7ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:40:37 UTC +00:00], ["email", "unitec3@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$68/F2.5Kjo5jpIhX8Fs7N.qO233cqe9hfbKz6CMPoq3k4UbVwxZzO"], ["updated_at", Mon, 09 Jun 2014 09:40:37 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:40:37 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 54ms (Views: 53.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:40:37 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 56ms (Views: 54.3ms | ActiveRecord: 0.2ms)
+  [1m[35m (5.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.6ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 09:40:37 UTC +00:00], ["email", "unitec4@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$DxciaLzlhjakwiDZhovxnegRlLygDUxPH/bf0x3EkUImOnPnO2yiK"], ["updated_at", Mon, 09 Jun 2014 09:40:37 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:40:37 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 52ms (Views: 51.6ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:40:37 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 53ms (Views: 51.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.4ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (43.4ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:42:21 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$8YtxVfwMO7qG0otvm6BRBe60xkeDHN9sd.xFZwWwurBCbAtAm.QOK"], ["updated_at", Mon, 09 Jun 2014 09:42:21 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:42:21 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 414ms (Views: 357.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:42:22 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 86ms (Views: 51.8ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.7ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.8ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 09:42:22 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$5ClCbzCnsJU2kDDm561HSe406fdINmHJBnlwZeOgQnlrhxkevs.yK"], ["updated_at", Mon, 09 Jun 2014 09:42:22 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 09:42:22 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 54ms (Views: 53.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 09:42:22 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 56ms (Views: 54.9ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (6.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 18:35:45 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 111ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 18:35:45 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (21.4ms)
+Completed 200 OK in 1304ms (Views: 1303.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+Started GET "/login" for 127.0.0.1 at 2014-06-09 18:35:46 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 162ms (Views: 161.6ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 18:35:47 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 294ms (Views: 122.6ms | ActiveRecord: 5.1ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (78.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 18:35:47 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$oEgArW95E4HWdmRsMzdAd.Y6AyPejCVl9zKBzgeZdayOsfyZN9NtO"], ["updated_at", Mon, 09 Jun 2014 18:35:47 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 18:35:47 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 123ms (Views: 122.9ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 18:35:47 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 118ms (Views: 116.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (59.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (12.9ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 18:35:47 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$3kT9On8OcpVRNde2b39l8uOAaaRLXBn9eAxZDMnIfZxajjcxEtN8C"], ["updated_at", Mon, 09 Jun 2014 18:35:47 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 18:35:47 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 151ms (Views: 150.9ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 18:35:48 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 133ms (Views: 131.7ms | ActiveRecord: 0.2ms)
+  [1m[35m (8.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (0.7ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'GuarderiaS' LIMIT 1[0m
+  [1m[35mSQL (9.5ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 18:35:48 UTC +00:00], ["name", "GuarderiaS"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 18:35:48 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 18:35:48 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 18:35:48 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 165ms (Views: 164.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 18:35:48 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 146ms (Views: 143.7ms | ActiveRecord: 0.2ms)
+  [1m[36m (8.4ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (4.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 18:36:26 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 89ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 18:36:27 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (21.4ms)
+Completed 200 OK in 730ms (Views: 729.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/login" for 127.0.0.1 at 2014-06-09 18:36:27 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 128ms (Views: 127.8ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 18:36:28 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 275ms (Views: 128.2ms | ActiveRecord: 4.6ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (46.1ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 18:36:28 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$CC0J2/OZHZ58KziEpf74GOu4wSGCsV87Mv9I4pTX0Z8V6NYvhzE0K"], ["updated_at", Mon, 09 Jun 2014 18:36:28 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 18:36:28 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 114ms (Views: 113.3ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 18:36:28 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 108ms (Views: 106.9ms | ActiveRecord: 0.2ms)
+  [1m[35m (6.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (8.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 18:36:28 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$xKhwdRztC1oTvqTlt0ObSOnoObckpms3HOLF7wrFJSTFEDSO8HlKO"], ["updated_at", Mon, 09 Jun 2014 18:36:28 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 18:36:28 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 109ms (Views: 108.2ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 18:36:28 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 114ms (Views: 111.7ms | ActiveRecord: 0.3ms)
+  [1m[35m (8.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (0.5ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'GuarderiaS' LIMIT 1[0m
+  [1m[35mSQL (6.2ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 18:36:29 UTC +00:00], ["name", "GuarderiaS"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 18:36:29 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 18:36:29 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 18:36:29 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 128ms (Views: 127.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 18:36:29 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 129ms (Views: 127.2ms | ActiveRecord: 0.2ms)
+  [1m[36m (8.4ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePurposes (20140609195838)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (5.7ms)[0m  [1mCREATE TABLE "purposes" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "description" varchar(255), "nursery_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (1.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140609195838"]]
+  [1m[36m (5.1ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (2.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (44.6ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:19:29 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$WsIjXqbdaNFKkV6tUMSixOAB04E3P4V8fjCKGqpb3euw0ZUu6HcG6"], ["updated_at", Mon, 09 Jun 2014 22:19:29 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:19:29 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 678ms (Views: 644.2ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:19:29 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 65ms (Views: 53.7ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (4.8ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:19:30 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$OU2XSoCmGx4NnxTbFzXJM.1WGNPiTKeGKxZ9UIe8ChRCWc69iUBQO"], ["updated_at", Mon, 09 Jun 2014 22:19:30 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:19:30 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 57ms (Views: 56.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:19:30 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 62ms (Views: 60.9ms | ActiveRecord: 0.1ms)
+  [1m[36m (4.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mNursery Exists (0.4ms)[0m  SELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1
+  [1m[36mSQL (3.6ms)[0m  [1mINSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:19:30 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:19:30 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:19:30 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:19:30 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 60ms (Views: 59.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:19:30 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 86ms (Views: 85.1ms | ActiveRecord: 0.2ms)
+  [1m[35m (5.3ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (44.9ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:20:36 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$6zKyMjyXq88Bd8vDxT8mwOgXV43ZckrrN0vRpxryNOcpsKd7Zh/k."], ["updated_at", Mon, 09 Jun 2014 22:20:36 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:20:36 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 397ms (Views: 364.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:20:37 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 69ms (Views: 57.3ms | ActiveRecord: 0.2ms)
+  [1m[36m (5.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.9ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:20:37 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$Fc7Ub1cO0qo91S0LMgPLCOdVT1ubWNhJwzmPuwKEdpu.wZu5vqmOW"], ["updated_at", Mon, 09 Jun 2014 22:20:37 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:20:37 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 56ms (Views: 55.6ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:20:37 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 60ms (Views: 59.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (4.6ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mNursery Exists (0.3ms)[0m  SELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1
+  [1m[36mSQL (4.1ms)[0m  [1mINSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:20:37 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:20:37 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:20:37 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:20:37 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 56ms (Views: 55.3ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:20:37 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 55ms (Views: 54.1ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.4ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (62.8ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:26:20 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$cqP.bMG1brOtdeuvtLwcp.cVrhgfUOud4A5.IFw39sbtQcLasbNSi"], ["updated_at", Mon, 09 Jun 2014 22:26:20 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:26:20 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (14.8ms)
+Completed 200 OK in 530ms (Views: 490.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:26:21 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 87ms (Views: 66.6ms | ActiveRecord: 0.2ms)
+  [1m[36m (6.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (6.4ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:26:21 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$h265bVfb.RxM9oiRAasU7ulQE10LT3JtCPODuAjY0lATpDS1IBhjG"], ["updated_at", Mon, 09 Jun 2014 22:26:21 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:26:21 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 71ms (Views: 70.6ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:26:21 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 78ms (Views: 76.3ms | ActiveRecord: 0.2ms)
+  [1m[36m (5.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mNursery Exists (0.4ms)[0m  SELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1
+  [1m[36mSQL (3.2ms)[0m  [1mINSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:26:22 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:26:22 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:26:22 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:26:22 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 60ms (Views: 59.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:26:22 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 71ms (Views: 69.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.8ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (44.4ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:32:25 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$RF/q0JhZ9kQ7W07fIMAxluESODh0Yzxx7pPcQ54PRTsB7OYx2IDUO"], ["updated_at", Mon, 09 Jun 2014 22:32:25 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:32:25 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 391ms (Views: 357.8ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:32:25 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 71ms (Views: 57.7ms | ActiveRecord: 0.2ms)
+  [1m[36m (6.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.9ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:32:25 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$AjWqKstxa4cEB60DiOXbyuI.cExCENKrhqYQDs/OnNQjQ4JZKEJFm"], ["updated_at", Mon, 09 Jun 2014 22:32:25 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:32:25 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 60ms (Views: 60.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:32:25 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 60ms (Views: 58.7ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mNursery Exists (0.3ms)[0m  SELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1
+  [1m[36mSQL (4.0ms)[0m  [1mINSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:32:25 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:32:25 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:32:25 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:32:25 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 57ms (Views: 56.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (4.7ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (45.7ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:34:21 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$zpl4oCAtUTeFnXqppe7YeeE2Rm6Yhl7mRV5/UM/MIzz6wzOVyOAfG"], ["updated_at", Mon, 09 Jun 2014 22:34:21 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:34:21 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.7ms)
+Completed 200 OK in 393ms (Views: 358.3ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:34:22 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 65ms (Views: 53.2ms | ActiveRecord: 0.2ms)
+  [1m[36m (5.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (4.9ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:34:22 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$Dw2dbYihX3ZkXVn1RzQ5.ep/kzPxlZBdyqUpCEMA4W4exZtTwzQEq"], ["updated_at", Mon, 09 Jun 2014 22:34:22 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:34:22 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 55ms (Views: 54.8ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:34:22 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 54ms (Views: 52.5ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mNursery Exists (0.3ms)[0m  SELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1
+  [1m[36mSQL (3.4ms)[0m  [1mINSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:34:22 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:34:22 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:34:22 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:34:22 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 55ms (Views: 54.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (4.9ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (45.2ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:39:51 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$3G5vC5ppMalGJPbfndxxwOIfgbhtuf7Xm5jkO8FmcZFZwGqmIFD.6"], ["updated_at", Mon, 09 Jun 2014 22:39:51 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:39:51 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 401ms (Views: 367.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:39:51 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"ra@ra.ra", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'ra@ra.ra' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 64ms (Views: 53.3ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.5ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (4.5ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:39:51 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$Z1hWn.ocFrzWUCWLO42q8.VM7uW0hPWqLUrgkM/MPtazHl2Y3oAoq"], ["updated_at", Mon, 09 Jun 2014 22:39:51 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:39:51 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 57ms (Views: 56.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:39:51 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 55ms (Views: 53.4ms | ActiveRecord: 0.2ms)
+  [1m[36m (4.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mNursery Exists (0.9ms)[0m  SELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1
+  [1m[36mSQL (3.2ms)[0m  [1mINSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:39:52 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:39:52 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:39:52 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:39:52 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 55ms (Views: 54.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (5.4ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (45.4ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:42:19 UTC +00:00], ["email", "unitec1@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$xiULsjptLshB4Ajh.fpkc.PImicdP3JQeJoD20oBMKgXkOmS4oAaK"], ["updated_at", Mon, 09 Jun 2014 22:42:19 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:42:19 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 391ms (Views: 356.9ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:42:20 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 67ms (Views: 55.8ms | ActiveRecord: 0.2ms)
+  [1m[36m (5.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.0ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:42:20 UTC +00:00], ["email", "unitec2@ong.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$wmOnwAgda22AW.Vx7TpD4uNFCQemMlEkE4lGpEvj7oD2NFDcwDNa."], ["updated_at", Mon, 09 Jun 2014 22:42:20 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:42:20 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 56ms (Views: 55.2ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:42:20 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 56ms (Views: 54.2ms | ActiveRecord: 0.1ms)
+  [1m[36m (4.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mNursery Exists (0.3ms)[0m  SELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1
+  [1m[36mSQL (3.1ms)[0m  [1mINSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:42:20 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:42:20 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:42:20 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:42:20 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 54ms (Views: 53.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (4.3ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mNursery Exists (0.3ms)[0m  SELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1
+  [1m[36mSQL (20.7ms)[0m  [1mINSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:43:40 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:43:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:43:40 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 34ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:43:41 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 355ms (Views: 353.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (4.7ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (86.2ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:44:55 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$FC1K9fYbwV5fWFrFncPK0OQUQkSvjVzptPLf6w37nEfnTvLs9ilj6"], ["updated_at", Mon, 09 Jun 2014 22:44:55 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:44:55 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 407ms (Views: 371.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:44:55 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 25ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:44:55 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 158ms (Views: 116.5ms | ActiveRecord: 0.5ms)
+  [1m[35m (5.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.3ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 22:44:56 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$qFVEMlonKKUL7v.o5kLaqejnVDv9z1e6PPegGMkfl3RtlawUXm2/G"], ["updated_at", Mon, 09 Jun 2014 22:44:56 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:44:56 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 69ms (Views: 68.2ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:44:56 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 72ms (Views: 69.3ms | ActiveRecord: 0.3ms)
+  [1m[35m (4.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (2.6ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1[0m
+  [1m[35mSQL (4.4ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:44:56 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:44:56 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:44:56 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:44:56 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 82ms (Views: 81.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (6.8ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (45.3ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:47:16 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$r.BJU/7K0NMLhMAgRlZRlOohq8CC122R1RwoDKqcRzTo9zws5glj2"], ["updated_at", Mon, 09 Jun 2014 22:47:16 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:47:16 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.8ms)
+Completed 200 OK in 406ms (Views: 372.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:47:17 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 24ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:47:17 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 147ms (Views: 108.3ms | ActiveRecord: 0.6ms)
+  [1m[35m (4.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.1ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 22:47:17 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$rmcXxZmpxDOnLDixU8X4WejnUMcdz3Op4AHNnrn0o69K3Snec.cMe"], ["updated_at", Mon, 09 Jun 2014 22:47:17 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:47:17 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 55ms (Views: 55.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:47:17 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 59ms (Views: 58.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (2.0ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1[0m
+  [1m[35mSQL (3.7ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:47:17 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:47:17 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:47:17 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:47:17 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 56ms (Views: 55.6ms | ActiveRecord: 0.0ms)
+  [1m[35m (5.4ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (51.1ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:48:14 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$HmqlXlMk8tKJDCApKQM0oe6O7IfmZiYyR4CpkD2/5QFrNFnwN0Hs2"], ["updated_at", Mon, 09 Jun 2014 22:48:14 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:48:14 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (12.8ms)
+Completed 200 OK in 457ms (Views: 418.1ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:48:15 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 25ms (ActiveRecord: 0.3ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:48:15 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 187ms (Views: 143.7ms | ActiveRecord: 1.1ms)
+  [1m[35m (5.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (6.9ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 22:48:15 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$s3PjKeKBxy6.XwfDivftt.RKlJGWIiUOxRH5sE8uYFt3ZqNvfUN1G"], ["updated_at", Mon, 09 Jun 2014 22:48:15 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:48:15 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 68ms (Views: 67.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:48:15 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 69ms (Views: 67.6ms | ActiveRecord: 0.1ms)
+  [1m[35m (5.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (2.8ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1[0m
+  [1m[35mSQL (3.6ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:48:15 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:48:15 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:48:15 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:48:15 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 62ms (Views: 61.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (6.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 22:52:09 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 45ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:52:09 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 433ms (Views: 431.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 22:52:10 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:52:10 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 58ms (Views: 57.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (49.1ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 22:52:10 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$XcFWQ8D/Cq35QSZs2VYMN.y.wj8xJrqer7GsvQfUFJ9C2j62xKDue"], ["updated_at", Mon, 09 Jun 2014 22:52:10 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:52:10 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 57ms (Views: 56.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:52:10 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 24ms (ActiveRecord: 0.3ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:52:10 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 157ms (Views: 116.1ms | ActiveRecord: 0.6ms)
+  [1m[35m (80.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 22:52:10 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$K2LVKY3I3aD89WBM7kEXY.pARGNghN88s.gf48UxKE1kMI0nVpwbe"], ["updated_at", Mon, 09 Jun 2014 22:52:10 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:52:10 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 63ms (Views: 62.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 22:52:11 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 59ms (Views: 56.5ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (2.2ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1[0m
+  [1m[35mSQL (3.3ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 22:52:11 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 22:52:11 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 22:52:11 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 22:52:11 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 65ms (Views: 64.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (4.6ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:06:20 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 33ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:06:20 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 384ms (Views: 383.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:06:20 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:06:20 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 53ms (Views: 53.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (46.7ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 23:06:20 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$WCiF19L7XVyZKdcElgXhQuF4G4gJ076FDpgxM7YByKobMkoWYPoKe"], ["updated_at", Mon, 09 Jun 2014 23:06:20 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:06:20 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 56ms (Views: 55.1ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:06:20 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 23ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:06:20 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 142ms (Views: 105.9ms | ActiveRecord: 0.7ms)
+  [1m[35m (4.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.1ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 23:06:20 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$KSYwxJknKfpyN7d4eiqVpenUtw.p2lvvz3XMBhQzg/j7DTDU16T6K"], ["updated_at", Mon, 09 Jun 2014 23:06:20 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:06:20 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 57ms (Views: 56.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:06:21 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 55ms (Views: 53.9ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (1.9ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1[0m
+  [1m[35mSQL (3.2ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 23:06:21 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 23:06:21 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:06:21 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:06:21 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 53ms (Views: 53.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (4.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:07:05 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 36ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:07:06 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 403ms (Views: 402.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:07:06 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:07:06 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 59ms (Views: 58.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (46.4ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 23:07:06 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$bOjukzsRiOMr8FcfvLY5OenDaz/n49ETbh.MElZOKipEb0V4KhxPC"], ["updated_at", Mon, 09 Jun 2014 23:07:06 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:07:06 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 54ms (Views: 53.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:07:06 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 22ms (ActiveRecord: 0.3ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:07:06 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.0ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 146ms (Views: 110.3ms | ActiveRecord: 0.3ms)
+  [1m[35m (30.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.1ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 23:07:06 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$CdL6COKK5VhUSCUAVz0KwOWom8FDXApH78gxO2HquurloN.q5Oog."], ["updated_at", Mon, 09 Jun 2014 23:07:06 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:07:06 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 57ms (Views: 56.2ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:07:07 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 57ms (Views: 55.7ms | ActiveRecord: 0.3ms)
+  [1m[35m (4.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (1.9ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1[0m
+  [1m[35mSQL (2.7ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 23:07:07 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 23:07:07 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:07:07 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:07:07 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 54ms (Views: 53.8ms | ActiveRecord: 0.0ms)
+  [1m[35m (4.4ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:08:18 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 34ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:08:18 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.7ms)
+Completed 200 OK in 404ms (Views: 402.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:08:18 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:08:18 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 59ms (Views: 59.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (21.9ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 23:08:19 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$JK8k3pYlWJ10yzCvCS6mf.tPf..pUkcYU68EjeyvnHwHqA6t5P8jG"], ["updated_at", Mon, 09 Jun 2014 23:08:19 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:08:19 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 87ms (Views: 86.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:08:19 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 24ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:08:19 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 147ms (Views: 109.1ms | ActiveRecord: 0.6ms)
+  [1m[35m (5.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 23:08:19 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$DGB957WRliSa0aqIEIaviuTCnWuCnjRMu/G5K.FmN0TRy3x/mlsga"], ["updated_at", Mon, 09 Jun 2014 23:08:19 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:08:19 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 56ms (Views: 55.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:08:19 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 61ms (Views: 59.6ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.8ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (2.2ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 23:08:19 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 23:08:19 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:08:19 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:08:19 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 53ms (Views: 53.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (4.5ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:11:29 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 35ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:11:29 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 388ms (Views: 387.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:11:29 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:11:29 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 54ms (Views: 53.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (21.4ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 23:11:29 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$S5eyxxzG4NOnVN13EZtXIOaWIPlejEFS17LYdd9m.q70o9ZhnAAw6"], ["updated_at", Mon, 09 Jun 2014 23:11:29 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:11:29 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 79ms (Views: 78.8ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:11:30 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 23ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:11:30 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 140ms (Views: 104.3ms | ActiveRecord: 0.6ms)
+  [1m[35m (4.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 23:11:30 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$cPTMpn6xbj7jB.2dDDKbVOxVCw/tsYyMhcku7Xjw/YdEgs/x/J4uS"], ["updated_at", Mon, 09 Jun 2014 23:11:30 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:11:30 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 55ms (Views: 54.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:11:30 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 58ms (Views: 56.4ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (2.0ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 23:11:30 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 23:11:30 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:11:30 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:11:30 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 57ms (Views: 56.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (5.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:12:26 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 36ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:12:26 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 386ms (Views: 385.3ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:12:27 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:12:27 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 57ms (Views: 56.7ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (22.9ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 23:12:27 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$VeEfuBb.QfoxC9D5cIVG6e0/ALky4wIlvucUZhAdtIPMPAVZJU4tK"], ["updated_at", Mon, 09 Jun 2014 23:12:27 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:12:27 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 82ms (Views: 82.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:12:27 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 23ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:12:27 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 143ms (Views: 106.8ms | ActiveRecord: 0.6ms)
+  [1m[35m (4.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 23:12:27 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$85tfUzSa3usDKLGZ/JQdIunba46Nx2Dk1ZRofdk/E1RP6lRwLgStq"], ["updated_at", Mon, 09 Jun 2014 23:12:27 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:12:27 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 55ms (Views: 55.0ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:12:27 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 57ms (Views: 54.9ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.8ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (2.4ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1[0m
+  [1m[35mSQL (3.8ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 23:12:28 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 23:12:28 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:12:28 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:12:28 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 59ms (Views: 58.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (35.8ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:16:56 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 35ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:16:56 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 385ms (Views: 384.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:16:56 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:16:56 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 57ms (Views: 56.6ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (22.2ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 23:16:56 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$gV5.9/NUVtV/J.sXm7/NhOqZhud.eVXP48tfJyW7NFOVozMjJhiGm"], ["updated_at", Mon, 09 Jun 2014 23:16:56 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:16:56 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 81ms (Views: 80.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:16:56 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 23ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:16:57 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 143ms (Views: 107.2ms | ActiveRecord: 0.5ms)
+  [1m[35m (4.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.1ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 23:16:57 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$9cMuzAhTlM0JIUtfAjij6.1P1WVg.LaSMaE/FRmUkSSTrMvLz9Uzu"], ["updated_at", Mon, 09 Jun 2014 23:16:57 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:16:57 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 56ms (Views: 55.6ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:16:57 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 60ms (Views: 58.5ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.9ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (4.1ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guarderia1' LIMIT 1[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 23:16:57 UTC +00:00], ["name", "Guarderia1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 23:16:57 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:16:57 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:16:57 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 59ms (Views: 58.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (4.9ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:23:27 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 35ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:23:27 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 372ms (Views: 371.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:23:27 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:23:27 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 53ms (Views: 53.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (21.5ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 23:23:27 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$.hBZY5ZL3U7gBywXae7YgurliwxnJUY9Rw1lJi5loW1DhW.SM8fyG"], ["updated_at", Mon, 09 Jun 2014 23:23:27 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:23:27 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 79ms (Views: 78.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:23:27 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 23ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:23:27 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 151ms (Views: 114.9ms | ActiveRecord: 0.6ms)
+  [1m[35m (4.6ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.1ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 23:23:28 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$PSs4nrpMhFQWMiFLvnb5TevsHOjsCE5i8pxKBxHa1qwVYV.9.aHA6"], ["updated_at", Mon, 09 Jun 2014 23:23:28 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:23:28 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 56ms (Views: 55.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:23:28 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 60ms (Views: 58.4ms | ActiveRecord: 0.2ms)
+  [1m[35m (5.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (2.2ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guard1' LIMIT 1[0m
+  [1m[35mSQL (3.0ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 23:23:28 UTC +00:00], ["name", "Guard1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 23:23:28 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:23:28 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:23:28 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 60ms (Views: 59.4ms | ActiveRecord: 0.0ms)
+  [1m[35m (5.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:24:09 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 34ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:24:10 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 371ms (Views: 369.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:24:10 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:24:10 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 55ms (Views: 54.5ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (22.4ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 23:24:10 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$w2woX4TBnP7xVXDaEzRpG.pMw13IDFteP3c6b97pxHnSS9Ho9pIaa"], ["updated_at", Mon, 09 Jun 2014 23:24:10 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:24:10 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 78ms (Views: 77.5ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:24:10 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 22ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:24:10 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 142ms (Views: 105.7ms | ActiveRecord: 0.6ms)
+  [1m[35m (5.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (4.7ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 23:24:10 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$mcoCZrd.MuL6xtzEP40ghO.AYNHGshhxNYKfr.OwT/uYS.SPNbske"], ["updated_at", Mon, 09 Jun 2014 23:24:10 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:24:10 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 53ms (Views: 52.9ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:24:10 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 63ms (Views: 61.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.5ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (2.0ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guard1' LIMIT 1[0m
+  [1m[35mSQL (3.9ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 23:24:11 UTC +00:00], ["name", "Guard1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 23:24:11 UTC +00:00]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:24:11 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:24:11 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 61ms (Views: 61.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (4.8ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:27:07 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 37ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:27:07 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 378ms (Views: 377.4ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:27:07 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:27:07 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 57ms (Views: 56.2ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (28.3ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 23:27:08 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$/GWr9ftaUVJcd.2aPVbnqOD3yP8wRZn9iwDsrXF7awVxZKro0ey6K"], ["updated_at", Mon, 09 Jun 2014 23:27:08 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:27:08 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 87ms (Views: 86.7ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:27:08 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 23ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:27:08 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.4ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 158ms (Views: 121.2ms | ActiveRecord: 0.8ms)
+  [1m[35m (5.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (6.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 23:27:08 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$yYcrsO5idkMK4NPLHiDVCeKLGn.yvkbKNEgCZcpi.ohftNbAFQkPe"], ["updated_at", Mon, 09 Jun 2014 23:27:08 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:27:08 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 61ms (Views: 60.4ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:27:08 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 60ms (Views: 58.8ms | ActiveRecord: 0.2ms)
+  [1m[35m (4.7ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (1.9ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guard1' LIMIT 1[0m
+  [1m[35mSQL (4.0ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 23:27:08 UTC +00:00], ["name", "Guard1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 23:27:08 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:27:08 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:27:08 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 57ms (Views: 57.0ms | ActiveRecord: 0.0ms)
+  [1m[35m (5.1ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:27:42 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 35ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:27:42 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (10.3ms)
+Completed 200 OK in 387ms (Views: 386.0ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Started GET "/nurseries/new" for 127.0.0.1 at 2014-06-09 23:27:42 +0000
+Processing by NurseriesController#new as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:27:42 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 60ms (Views: 59.9ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.2ms)[0m  [1mSAVEPOINT active_record_1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (24.6ms)[0m  INSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["created_at", Mon, 09 Jun 2014 23:27:43 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$GUvvAeDIxjlim5NzPOtP8O1Szj3xIJK269XJkNWHPJp/.EgptWjBi"], ["updated_at", Mon, 09 Jun 2014 23:27:43 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:27:43 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 84ms (Views: 83.2ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:27:43 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"1@1.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users" WHERE "users"."email" = '1@1.com' LIMIT 1
+Redirected to http://www.example.com/nurseries
+Completed 302 Found in 23ms (ActiveRecord: 0.2ms)
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:27:43 +0000
+Processing by NurseriesController#index as HTML
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "nurseries"[0m
+  Rendered nurseries/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 143ms (Views: 106.1ms | ActiveRecord: 0.6ms)
+  [1m[35m (5.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (5.0ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "full_name", "nursery_id", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", Mon, 09 Jun 2014 23:27:43 UTC +00:00], ["email", "1@1.com"], ["full_name", "UsuarioTest"], ["nursery_id", 1], ["password_digest", "$2a$04$KEkOjWIKm7IZRoBcWXqZwuIf6M.b5daX3QzH4s9idtO0uJgF.aY6e"], ["updated_at", Mon, 09 Jun 2014 23:27:43 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:27:43 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 58ms (Views: 57.2ms | ActiveRecord: 0.0ms)
+Started POST "/login" for 127.0.0.1 at 2014-06-09 23:27:43 +0000
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "email"=>"failure@aa.com", "password"=>"[FILTERED]", "commit"=>"Login"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."email" = 'failure@aa.com' LIMIT 1[0m
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 62ms (Views: 60.1ms | ActiveRecord: 0.2ms)
+  [1m[35m (5.0ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mNursery Exists (2.3ms)[0m  [1mSELECT 1 AS one FROM "nurseries" WHERE "nurseries"."name" = 'Guard1' LIMIT 1[0m
+  [1m[35mSQL (3.6ms)[0m  INSERT INTO "nurseries" ("address", "country", "created_at", "name", "purpose", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["address", "Algun Lugar"], ["country", "Honduras"], ["created_at", Mon, 09 Jun 2014 23:27:43 UTC +00:00], ["name", "Guard1"], ["purpose", "Test"], ["updated_at", Mon, 09 Jun 2014 23:27:43 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/nurseries" for 127.0.0.1 at 2014-06-09 23:27:43 +0000
+Processing by NurseriesController#index as HTML
+Redirected to http://www.example.com/login
+Filter chain halted as :authenticate rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+Started GET "/login" for 127.0.0.1 at 2014-06-09 23:27:43 +0000
+Processing by SessionController#new as HTML
+  Rendered session/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 56ms (Views: 55.7ms | ActiveRecord: 0.0ms)
+  [1m[35m (4.9ms)[0m  rollback transaction
